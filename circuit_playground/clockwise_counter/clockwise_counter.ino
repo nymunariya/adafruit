@@ -9,13 +9,9 @@
 #include <Adafruit_CircuitPlayground.h>
 #include <Wire.h>
 
-int colour = 180;
 int counter = 0;
 int ticker = 0;
-bool richtung = true;
 
-static int left_array[5] = {4,3,2,1,0};
-static int right_array[5] = {5,6,7,8,9};
 static int clockwise[10] = {9,8,7,6,5,4,3,2,1,0};
 
 void setup() {
