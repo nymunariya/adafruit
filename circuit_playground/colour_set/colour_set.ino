@@ -12,6 +12,7 @@
 int red = 0;
 int green = 0;
 int blue = 0;
+int brightness = 0;
 uint8_t pixeln = 0;
 
 void setup() {
@@ -22,23 +23,15 @@ void setup() {
 
 void loop() {
   /************* TEST CAPTOUCH */
-  Serial.print("Red: "); Serial.println(CircuitPlayground.readCap(3));
-  //Serial.print("Capsense #2: "); Serial.println(CircuitPlayground.readCap(2));
-  
-  //Serial.print("Capsense #0: "); Serial.println(CircuitPlayground.readCap(0));
+  Serial.print("Red: "); Serial.println(CircuitPlayground.readCap(2));
   Serial.print("Green: "); Serial.println(CircuitPlayground.readCap(1));
-
-  
   Serial.print("Blue #12: "); Serial.println(CircuitPlayground.readCap(12));
-  //Serial.print("Capsense #6: "); Serial.println(CircuitPlayground.readCap(6));
-  
-  //Serial.print("Capsense #9: "); Serial.println(CircuitPlayground.readCap(9));
-  Serial.print("Capsense #10: "); Serial.println(CircuitPlayground.readCap(10));
+  Serial.print("Brightness: "); Serial.println(CircuitPlayground.readCap(9));
 
-  if( CircuitPlayground.readCap(3) > 255 ) {
+  if( CircuitPlayground.readCap(2) > 255 ) {
      red = 255;
   } else {
-     red = CircuitPlayground.readCap(3);
+     red = CircuitPlayground.readCap(2);
   }
 
   if( CircuitPlayground.readCap(1) > 255 ) {
@@ -52,10 +45,17 @@ void loop() {
   } else {
      blue = CircuitPlayground.readCap(12);
   }
+
+  if( CircuitPlayground.readCap(9) > 255 ) {
+     brightness = 255;
+  } else {
+     brightness = CircuitPlayground.readCap(9);
+  }
   
   for (int i=0; i<10; ++i) {                                    //for smooth colouring
     CircuitPlayground.strip.setPixelColor(i, red, green, blue);
   }
+  //CircuitPlayground.setBrightness(brightness);  //additionally set brightness
   CircuitPlayground.strip.show();
   
   //CircuitPlayground.setPixelColor(pixeln++, red, green, blue);  //for erratic colouring
